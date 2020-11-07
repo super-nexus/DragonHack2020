@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
     <link href="/stylesheets/bootstrap.css" type="text/css" rel="stylesheet"/>
 
@@ -12,24 +12,33 @@
 </head>
 <body>
 
-    <div id="loginContainer" class="container">
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-8" align="center">
-                <img id="logoImg"  class="img-fluid" src="/images/feel-good-logo.png" alt="Logo" />
-            </div>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-10 col-md-6 col-lg-4" align="center">
-                <form class="form-control bg-transparent">
-                    <input class="my-inputs" name="username" type="text" placeholder="Username"/>
-                    <input class="my-inputs" name="password" type="password" placeholder="Password"/>
-                    <input id="loginButton" class="btn" type="submit" value="LOG IN"/>
-                </form>
-            </div>
+<div id="loginContainer" class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8" align="center">
+            <img id="logoImg" class="img-fluid" src="/images/feel-good-logo.png" alt="Logo"/>
         </div>
     </div>
+    <div class="row justify-content-center">
+        <div class="col-10 col-md-6 col-lg-4" align="center">
+            <form method="post" action="/user/login" class="form-control bg-transparent">
+                <input class="my-inputs" name="username" type="text" placeholder="Username"/>
+                <input class="my-inputs" name="password" type="password" placeholder="Password"/>
+                <input id="loginButton" class="btn" type="submit" value="LOG IN"/>
+            </form>
+        </div>
+    </div>
+    {{#if error}}
+        <div class="row">
+            <div id="alertBox" class="col-6 alert alert-danger">
+                {{errorMessage}}
+            </div>
+        </div>
+    {{/if}}
+</div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+        integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+        crossorigin="anonymous"></script>
 </body>
 </html>
