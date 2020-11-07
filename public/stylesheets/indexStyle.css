@@ -1,0 +1,59 @@
+body{
+    font-family: 'Dhurjati', sans-serif;
+}
+
+.navigation{
+    margin-top: 20px;
+}
+
+
+.feel-good-text{
+    font-size: 2em;
+    float: left;
+}
+
+.log-out-button{
+    border-radius: 45px;
+    width: 100px;
+    height: 40px;
+    background-color: #C0E0DE;
+    text-align: center;
+    vertical-align: center;
+    color: #4F7CAC;
+    font-weight: bold;
+    box-shadow: 0px 5px 1px #535461;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: right;
+}
+
+#index-image{
+    height: 200px;
+    width: 300px;
+}
+
+.info-box-header{
+    font-size: 1.4em;
+}
+
+
+.info-box{
+    width: 150px;
+    height: 150px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.8em;
+    font-family: sans-serif;
+}
+.alert-box-header{
+    font-size: 2em;
+}
+.alert-box{
+    background-color: rgba(255, 255, 255, 0.3);
+    height: 50px;
+    border-radius: 20px;
+}
