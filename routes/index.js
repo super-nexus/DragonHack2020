@@ -9,4 +9,8 @@ router.get('/index', (req, res) => {
     res.render('index', {});
 });
 
+router.get("/office", (req, res) => {
+    res.render("office", {});
+})
+
 module.exports = router;

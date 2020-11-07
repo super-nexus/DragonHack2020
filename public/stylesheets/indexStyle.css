@@ -8,7 +8,7 @@ body{
 
 
 .feel-good-text{
-    font-size: 2em;
+    font-size: 2.2em;
     float: left;
 }
 
@@ -26,6 +26,7 @@ body{
     justify-content: center;
     align-items: center;
     float: right;
+    margin-top: 7px;
 }
 
 #index-image{
@@ -49,11 +50,21 @@ body{
     font-size: 2.8em;
     font-family: sans-serif;
 }
+
 .alert-box-header{
     font-size: 2em;
 }
 .alert-box{
     background-color: rgba(255, 255, 255, 0.3);
     height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 20px;
+    font-size: 1.5em;
+}
+
+.feelings {
+    width: 150px;
+    height: 150px;
 }
