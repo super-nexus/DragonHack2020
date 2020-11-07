@@ -8,8 +8,9 @@ let hbs = require('hbs');
 
 
 let indexRouter = require('./routes/index');
-let usersRouter = require('./routes/users');
+let usersRouter = require('./routes/userRoutes');
 let dataRouter = require('./routes/dataRoutes');
+let feelingRouter = require('./routes/feelingRoutes');
 let {mongoose} = require('./db/mongoose');
 
 let db = mongoose.connection;
@@ -30,7 +31,8 @@ app.use(bodyParser.json());
 
 app.use('/', indexRouter);
 app.use('/data', dataRouter);
-app.use('/users', usersRouter);
+app.use('/user', usersRouter);
+app.use('/feeling', feelingRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
