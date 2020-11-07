@@ -42,6 +42,10 @@ let logIn = (req, res) => {
         }
         else{
             if(docs.length === 1){
+                user = docs[0];
+                console.log(JSON.stringify(user));
+                res.cookie('username', user.username);
+                res.cookie('userId',  user._id);
                 res.redirect("/index");
             }
             else{
