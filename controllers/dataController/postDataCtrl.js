@@ -17,7 +17,7 @@ var postData = (req, res) => {
 };
 
 var getData = (req, res) => {
-    SensorData.findByDate({}, (err, docs) => {
+    SensorData.find({}, (err, docs) => {
         res.send(docs);
     })
 };
