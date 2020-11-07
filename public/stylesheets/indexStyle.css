@@ -27,6 +27,11 @@ body{
     align-items: center;
     float: right;
     margin-top: 7px;
+    cursor: pointer;
+}
+
+.log-out-button:hover{
+    background-color: #CFF5E2
 }
 
 #index-image{
@@ -67,4 +72,18 @@ body{
 .feelings {
     width: 150px;
     height: 150px;
+    border-radius: 150px;
+    cursor: pointer;
+}
+
+#fantastic:hover {
+    border: 3px solid #39B541;
+}
+
+#ok:hover {
+    border: 3px solid yellow;
+}
+
+#frustrated:hover {
+    border: 3px solid red;
 }
