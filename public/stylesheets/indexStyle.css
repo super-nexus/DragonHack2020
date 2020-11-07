@@ -27,6 +27,11 @@ body{
     align-items: center;
     float: right;
     margin-top: 7px;
+    cursor: pointer;
+}
+
+.log-out-button:hover{
+    background-color: #CFF5E2
 }
 
 #index-image{
