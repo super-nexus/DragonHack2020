@@ -18,9 +18,18 @@ let SensorDataScheme = new mongoose.Schema({
         required : true
     },
     time: {
-        type: Date,
-        default: Date.now,
-        required: true
+        date: {
+            type: String,
+            default: new Date().toISOString().slice(0, 10)
+        },
+        hour: {
+            type: Number,
+            default: parseInt(new Date().toISOString().slice(11, 13))
+        },
+        minute: {
+            type: Number,
+            default: parseInt(new Date().toISOString().slice(14, 16))
+        }
     }
 });
 
