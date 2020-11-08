@@ -43,6 +43,10 @@ body{
     font-size: 1.4em;
 }
 
+.info-box-header{
+    font-size: 1.1em;
+}
+
 .info-box{
     width: 150px;
     height: 150px;
@@ -55,7 +59,7 @@ body{
     font-family: sans-serif;
 }
 
-.info-box{
+.info-box2{
     width: 80px;
     height: 80px;
     background-color: rgba(255, 255, 255, 0.3);
@@ -63,8 +67,20 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2.8em;
+    font-size: 1.4em;
     font-family: sans-serif;
+}
+
+.low {
+    background-color: #F25C5C;
+}
+
+.high {
+    background-color: #EF9253;
+}
+
+.ok {
+    background-color: #59923F;
 }
 
 #office-button{

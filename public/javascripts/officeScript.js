@@ -1,5 +1,5 @@
 function pridobiPodatke(){
-    let res = $.ajax({type: "POST", url: '/data/getDataByDate', data:{"date":"2020-11-08"}, async: false})
+    let res = $.ajax({type: "POST", url: '/data/getDataByDate',dataType: "json", data:{"date":"2020-11-07"}, async: false})
     let data;
     console.log("Ni podatkov");
     if(res.responseJSON){
@@ -9,6 +9,7 @@ function pridobiPodatke(){
         for (var key in data) {
             dict.push({"date": data[key].time.date.concat(" ",data[key].time.hour.toString(),":",data[key].time.minute.toString()), "value": data[key].temperature })
         }
+        console.log(dict)
         return dict;
     }
     console.log(res);
