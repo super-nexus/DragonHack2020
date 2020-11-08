@@ -16,6 +16,18 @@ const addFeeling = (req, res) =>{
   }
 };
 
+const getFeelings = (req, res) => {
+    Feeling.find({}, (err, docs) => {
+        if(!err){
+            res.status(200).send(docs);
+        }
+        else{
+            console.error("Error when obtaining all feelings docs", err);
+        }
+    })
+};
+
 module.exports = {
-    addFeeling
+    addFeeling,
+    getFeelings
 };

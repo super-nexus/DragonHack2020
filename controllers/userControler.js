@@ -55,7 +55,16 @@ let logIn = (req, res) => {
     })
 };
 
+let logOut = (req, res) => {
+    if(req.cookies['userId']){
+        res.clearCookie('userId');
+        res.clearCookie('username');
+    }
+    res.redirect('/login');
+};
+
 module.exports = {
     addUser,
-    logIn
+    logIn,
+    logOut
 };

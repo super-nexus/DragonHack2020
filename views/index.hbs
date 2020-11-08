@@ -22,7 +22,9 @@
                 <div class="feel-good-text">Feel Good</div>
             </div>
             <div class="col-6">
-                <div class="log-out-button">LOG OUT</div>
+                <form method="get" action="/user/logout">
+                    <input type="submit" class="log-out-button" value="LOG OUT">
+                </form>
             </div>
         </div>
 
@@ -50,7 +52,7 @@
             <div class="col-6 col-sm-6 col-lg-3" align="center">
                 <div class="info-box-header">Brightness</div>
                 <div class="info-box">
-                    <div class="info-box-text">{{brightness}}</div>
+                    <div class="info-box-text">{{brightness}}Lux</div>
                 </div>
             </div>
             <div class="col-6 col-sm-6 col-lg-3" align="center">
@@ -65,15 +67,15 @@
                 <div class="row mt-2 mb-3 justify-content-center" >
                     <div class="col-12 col-sm-4 col-lg-4" align="center">
                         <div class="info-box-header">Frustrated</div>
-                        <img class="feelings feeling-notclicked" id="frustrated" src="/images/frustrated.png">
+                        <img class="feelings {{#if feelingClicked}}feeling-notclicked{{/if}}" id="frustrated" src="/images/frustrated.png">
                     </div>
                     <div class="col-12 col-sm-4 col-lg-4" align="center">
                         <div class="info-box-header">OK</div>
-                        <img class="feelings feeling-clicked" id="ok" src="/images/OK.png">
+                        <img class="feelings {{#if feelingClicked}}feeling-notclicked{{/if}}" id="ok" src="/images/OK.png">
                     </div>
                     <div class="col-12 col-sm-4 col-lg-4" align="center">
                         <div class="info-box-header">Fantastic</div>
-                        <img class="feelings feeling-notclicked" id="fantastic" src="/images/fantastic.png">
+                        <img class="feelings {{#if feelingClicked}}feeling-notclicked{{/if}}" id="fantastic" src="/images/fantastic.png">
                     </div>
                 </div>
             </div>
