@@ -2,8 +2,7 @@ let Feeling = require('../db/models/Feeling');
 
 const addFeeling = (req, res) =>{
   let data = req.body;
-  if(req.cookies['userId']) {
-      data.userId = req.cookies['userId'];
+      data.userId = '5fa707186098775190a5a02f'
       new Feeling(data).save(data, (err, returnedData) => {
           if (err) {
               console.error("Error when adding feeling");
@@ -13,7 +12,7 @@ const addFeeling = (req, res) =>{
               res.status(200).send("OK");
           }
       })
-  }
+
 };
 
 const getFeelings = (req, res) => {
@@ -27,7 +26,24 @@ const getFeelings = (req, res) => {
     })
 };
 
+const getTodaysFeelings = (req, res) => {
+
+    let todaysDate = new Date().toISOString().slice(0,10)
+
+    Feeling.find({'time.date' : todaysDate}, (err, docs) => {
+       if(err){
+           console.error('Error when getting todays feelings');
+           console.error(err)
+       }
+       else{
+           res.status(200).send(docs);
+       }
+    });
+
+}
+
 module.exports = {
     addFeeling,
-    getFeelings
+    getFeelings,
+    getTodaysFeelings
 };
