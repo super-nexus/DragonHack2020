@@ -1,5 +1,6 @@
 const axios = require('axios');
 const Feeling = require('../db/models/Feeling');
+const fs = require('fs');
 
 const index = (req, res) => {
 
@@ -35,8 +36,11 @@ const index = (req, res) => {
 
 const office = (req, res) => {
     uid = req.cookies['userId'];
+
     if(uid){
-        res.render('office', {});
+        let idealData = fs.readFileSync("../db/storage.txt");
+        let idealDataJson = JSON.parse(idealData);
+        res.render('office', idealDataJson);
     }
     else{
         res.redirect('/login');

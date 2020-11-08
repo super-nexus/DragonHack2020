@@ -5,6 +5,10 @@ let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 const bodyParser = require('body-parser');
 let hbs = require('hbs');
+let fs = require('fs');
+const spawn = require("child_process").spawn;
+let schedule = require('node-schdule');
+
 
 
 let indexRouter = require('./routes/index');
@@ -49,6 +53,16 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+let j = schedule.scheduleJob('7 0 * * *', function(){
+  const pythonProcess = spawn('python',["./bin/atributes_script.py"]);
+  pythonProcess.stdout.on('data', (data) => {
+    fs.writeFile("./db/storage.txt", data, function (err) {
+      if(err){console.error("Something went wront with storing data")}
+    })
+  });
+});
+
 
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
