@@ -2,7 +2,7 @@ let Feeling = require('../db/models/Feeling');
 
 const addFeeling = (req, res) =>{
   let data = req.body;
-      data.userId = '5fa707186098775190a5a02f'
+      data.userId = '5fa707186098775190a5a02f';
       new Feeling(data).save(data, (err, returnedData) => {
           if (err) {
               console.error("Error when adding feeling");
@@ -13,6 +13,12 @@ const addFeeling = (req, res) =>{
           }
       })
 
+};
+
+const deleteFeeling = (req, res) => {
+    Feeling.remove({}, (err, data) => {
+        res.send("OK");
+    });
 };
 
 const getFeelings = (req, res) => {
@@ -45,5 +51,6 @@ const getTodaysFeelings = (req, res) => {
 module.exports = {
     addFeeling,
     getFeelings,
-    getTodaysFeelings
+    getTodaysFeelings,
+    deleteFeeling
 };

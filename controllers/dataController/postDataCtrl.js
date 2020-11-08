@@ -52,24 +52,25 @@ var getCurrentData = (req, res) => {
 let getDataFromDate = (req, res) => {
     let sentDate = req.body.date;
 
-    let from = new Date(sentDate);
+    let fromm = new Date(sentDate);
     let to = new Date();
 
     SensorData.find({'time.date':{
-            "$gte": from,
+            "$gte": fromm,
             "$lte": to
         }}, (err, docs) => {
         if(!err){
-            console.log(docs)
+            res.send(docs);
         }
     })
 
-}
+};
 
 
 module.exports = {
     postData,
     getData,
     getDataByDate,
+    getDataFromDate,
     getCurrentData
 };

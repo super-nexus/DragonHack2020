@@ -33,7 +33,17 @@ const index = (req, res) => {
     }
 };
 
+const office = (req, res) => {
+    uid = req.cookies['userId'];
+    if(uid){
+        res.render('office', {});
+    }
+    else{
+        res.redirect('/login');
+    }
+}
 
 module.exports = {
-    index
+    index,
+    office
 };
