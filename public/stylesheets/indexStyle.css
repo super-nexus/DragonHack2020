@@ -55,6 +55,11 @@ body{
     font-family: sans-serif;
 }
 
+#office-button{
+    margin-right: 10px;
+    width: 150px;
+}
+
 .alert-box-header{
     font-size: 2em;
 }

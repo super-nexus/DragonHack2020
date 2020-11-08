@@ -25,7 +25,12 @@
             <div class="feel-good-text">Feel Good</div>
         </div>
         <div class="col-6">
-            <div class="log-out-button">LOG OUT</div>
+            <form method="get" action="/user/logout">
+                <input type="submit" class="log-out-button" value="LOG OUT">
+            </form>
+            <form method="get" action="/index">
+                <input id="office-button" type="submit" class="log-out-button" value="HOME DASHBOARD">
+            </form>
         </div>
     </div>
 
