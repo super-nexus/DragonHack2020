@@ -71,6 +71,11 @@ body{
     font-family: sans-serif;
 }
 
+.info-box-footer{
+    font-family: sans-serif;
+    font-size: 1em;
+}
+
 .low {
     background-color: #F25C5C;
 }

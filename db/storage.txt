@@ -1,0 +1,1 @@
+{"tempAverage": 22.53, "humiAverage": 40.49, "noiseAverage": 67.48, "brightAverage": 463.26}

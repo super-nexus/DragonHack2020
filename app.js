@@ -7,8 +7,8 @@ const bodyParser = require('body-parser');
 let hbs = require('hbs');
 let fs = require('fs');
 const spawn = require("child_process").spawn;
-let schedule = require('node-schdule');
-
+let schedule = require('node-schedule');
+let axios = require('axios');
 
 
 let indexRouter = require('./routes/index');
@@ -61,6 +61,16 @@ let j = schedule.scheduleJob('7 0 * * *', function(){
       if(err){console.error("Something went wront with storing data")}
     })
   });
+});
+
+const pythonProcess = spawn('python',["./bin/atributes_script.py"]);
+pythonProcess.stdout.on('data', (data) => {
+  console.log("DAta", data.toString());
+  axios.post("http://localhost:3000/data/addIdeal", JSON.parse(data.toString().trim())).then( res => {
+    console.log("Success");
+  }).catch((err) => {
+    console.error(err);
+  })
 });
 
 

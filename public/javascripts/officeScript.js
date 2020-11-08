@@ -1,5 +1,5 @@
 function pridobiPodatke(){
-    let res = $.ajax({type: "POST", url: '/data/getDataByDate',dataType: "json", data:{"date":"2020-11-07"}, async: false})
+    let res = $.ajax({type: "POST", url: '/data/getData', async: false})
     let data;
     console.log("Ni podatkov");
     if(res.responseJSON){

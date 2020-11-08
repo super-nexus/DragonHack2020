@@ -1,4 +1,5 @@
 var SensorData = require("../../db/models/SensorData");
+var Ideal = require('../../db/models/Ideal');
 
 var postData = (req, res) => {
     var data = req.body;
@@ -23,7 +24,7 @@ var deleteAll = (req, res) => {
 };
 
 var getData = (req, res) => {
-    SensorData.find({}, (err, docs) => {
+    SensorData.find({},null, {limit: 20}, (err, docs) => {
         res.send(docs);
     })
 };
@@ -70,6 +71,26 @@ let getDataFromDate = (req, res) => {
 
 };
 
+let addIdeal = (req, res) => {
+    let ideal = req.body;
+    console.log(ideal);
+    Ideal.remove({}, (err, succ) => {
+       if(!err){
+           new Ideal(ideal).save((error, obj) => {
+               res.status(200).send("OK");
+           })
+       }
+    });
+};
+
+let getIdeal = (req, res) => {
+    Ideal.find({}, (err, docs) => {
+        if(!err){
+            res.send(docs[0]);
+        }
+    });
+};
+
 
 module.exports = {
     postData,
@@ -77,5 +98,7 @@ module.exports = {
     getDataByDate,
     getDataFromDate,
     getCurrentData,
-    deleteAll
+    deleteAll,
+    addIdeal,
+    getIdeal
 };

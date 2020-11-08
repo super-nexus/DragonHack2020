@@ -1,7 +1,5 @@
 const axios = require('axios');
 const Feeling = require('../db/models/Feeling');
-const fs = require('fs');
-
 const index = (req, res) => {
 
     uid = req.cookies['userId'];
@@ -37,15 +35,112 @@ const index = (req, res) => {
 const office = (req, res) => {
     uid = req.cookies['userId'];
 
-    if(uid){
-        let idealData = fs.readFileSync("../db/storage.txt");
-        let idealDataJson = JSON.parse(idealData);
-        res.render('office', idealDataJson);
-    }
+    if(uid)
+        axios.post("http://localhost:3000/data/getIdeal").then(ideal => {
+            axios.post("http://localhost:3000/data/getCurrentData").then( currData => {
+                let avg = ideal.data;
+                let curr = currData.data;
+                
+                let officeObj = {}
+                
+                if(curr.temperature >= (avg.tempAverage - 0.5) && curr.temperature <= (avg.tempAverage + 0.5)){
+                    officeObj.temperature = {
+                        average: avg.tempAverage,
+                        clas: 'ok',
+                        text: 'OK'
+                    }
+                }
+                else if(curr.temperature < (avg.tempAverage - 0.5)){
+                    officeObj.temperature = {
+                        average: avg.tempAverage,
+                        clas: 'low',
+                        text: 'LOW'
+                    }
+                }
+                else{
+                    officeObj.temperature = {
+                        average: avg.tempAverage,
+                        clas: 'high',
+                        text: 'HIGH'
+                    }
+                }
+                
+                if(curr.humidity <= (avg.humiAverage + 1) && curr.humidity >= (avg.humiAverage - 1)){
+                    officeObj.humidity = {
+                        average: avg.humiAverage,
+                        clas: 'ok',
+                        text: 'OK'
+                    }
+                }
+                else if(currData.humidity < (avg.humiAverage - 1)){
+                    officeObj.humidity = {
+                        average: avg.humiAverage,
+                        clas: 'low',
+                        text: 'LOW'
+                    }
+                }
+                else{
+                    officeObj.humidity = {
+                        average: avg.humiAverage,
+                        clas: 'high',
+                        text: 'HIGH'
+                    }
+                }
+
+                if(curr.brightness <= (avg.brightAverage + 50 ) && curr.brightness >= (avg.brightAverage - 50)){
+                    officeObj.brightness = {
+                        average: avg.brightAverage,
+                        clas: 'ok',
+                        text: 'OK'
+                    }
+                }
+                else if(curr.brightness < (avg.brightAverage - 50)){
+                    officeObj.brightness = {
+                        average: avg.brightAverage,
+                        clas: 'low',
+                        text: 'LOW'
+                    }
+                }
+                else{
+                    officeObj.brightness = {
+                        average: avg.brightAverage,
+                        clas: 'high',
+                        text: 'HIGH'
+                    }
+                }
+
+                if(curr.noise <= (avg.noiseAverage + 4) && curr.noise >= (avg.noise - 4)) {
+                    officeObj.humidity = {
+                        average: avg.humiAverage,
+                        clas: 'ok',
+                        text: 'OK'
+                    }
+                }
+                else if(curr.noise < (avg.noiseAverage- 4)){
+                    officeObj.noise = {
+                        average: avg.noiseAverage,
+                        clas: 'low',
+                        text: 'LOW'
+                    }
+                }
+                else{
+                    officeObj.noise = {
+                        average: avg.noiseAverage,
+                        clas: 'high',
+                        text: 'HIGH'
+                    }
+                }
+                res.render('office', officeObj);
+            }).catch((err) => {
+                console.error(err);
+            })
+        }).catch(err => {
+            res.status(404).send("error when obtaining optimal data");
+        });
     else{
         res.redirect('/login');
     }
-}
+};
 
 module.exports = {
     index,
