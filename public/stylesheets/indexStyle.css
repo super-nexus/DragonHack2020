@@ -98,3 +98,34 @@ body{
 #frustrated:hover {
     border: 3px solid red;
 }
+
+.charts {
+    width: 100%;
+    height: 500px;
+    display: none;
+}
+
+.chart-holder{
+    width: 100%;
+    height: 500px;
+}
+
+.charts-active{
+    display: block;
+}
+
+#arrow-left {
+    width: 3em;
+    height: 3em;
+}
+
+#arrow-right {
+    width: 3em;
+    height: 3em;
+}
+
+.arrows{
+    position: relative;
+    right: -15%;
+    cursor: pointer;
+}

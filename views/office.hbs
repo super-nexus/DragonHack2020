@@ -14,7 +14,9 @@
 </head>
 <body>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="/javascripts/officeScript.js" type="text/javascript"></script>
+
 
 <div class="container">
 
@@ -43,172 +45,28 @@
             <div class="alert-box mt-2">Temperature is too low for most of the employees.</div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-4">
+            <div id="chart-header" class="alert-box-header mt-3">Temperature</div>
+        </div>
+        <div class="col-8 mt-3">
+            <div class="arrows">
+                <svg id="arrow-left" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm9.5 8.5a.5.5 0 0 0 0-1H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5z"/>
+                </svg>
+                <svg id="arrow-right" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm2.5 8.5a.5.5 0 0 1 0-1h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5z"/>
+                </svg>
+            </div>
+        </div>
+    </div>
 
-    <div class="alert-box-header mt-3">Temperature</div>
-
-    <!-- Styles -->
-    <style>
-        #chartdiv2 {
-            width: 100%;
-            height: 500px;
-        }
-
-    </style>
-
-    <!-- Resources -->
-    <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
-    <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
-    <script src="https://cdn.amcharts.com/lib/4/themes/dark.js"></script>
-    <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
-
-    <!-- Chart code -->
-    <script>
-        am4core.ready(function() {
-
-// Themes begin
-            am4core.useTheme(am4themes_dark);
-            am4core.useTheme(am4themes_animated);
-// Themes end
-
-// Create chart instance
-            var chart2 = am4core.create("chartdiv2", am4charts.XYChart);
-
-// Add data
-            chart2.data = pridobiPodatke();
-
-// Set input format for the dates
-            chart2.dateFormatter.inputDateFormat = "yyyy-MM-dd HH:mm";
-
-// Create axes
-            var dateAxis = chart2.xAxes.push(new am4charts.DateAxis());
-            var valueAxis = chart2.yAxes.push(new am4charts.ValueAxis());
-
-// Create series
-            var series = chart2.series.push(new am4charts.LineSeries());
-            series.dataFields.valueY = "value";
-            series.dataFields.dateX = "date";
-            series.tooltipText = "{value}"
-            series.strokeWidth = 2;
-            series.minBulletDistance = 15;
-
-// Drop-shaped tooltips
-            series.tooltip.background.cornerRadius = 20;
-            series.tooltip.background.strokeOpacity = 0;
-            series.tooltip.pointerOrientation = "vertical";
-            series.tooltip.label.minWidth = 40;
-            series.tooltip.label.minHeight = 40;
-            series.tooltip.label.textAlign = "middle";
-            series.tooltip.label.textValign = "middle";
-
-// Make bullets grow on hover
-            var bullet = series.bullets.push(new am4charts.CircleBullet());
-            bullet.circle.strokeWidth = 2;
-            bullet.circle.radius = 4;
-            bullet.circle.fill = am4core.color("2D5887");
-
-            var bullethover = bullet.states.create("hover");
-            bullethover.properties.scale = 1.3;
-
-// Make a panning cursor
-            chart2.cursor = new am4charts.XYCursor();
-            chart2.cursor.behavior = "panXY";
-            chart2.cursor.xAxis = dateAxis;
-            chart2.cursor.snapToSeries = series;
-
-
-        }); // end am4core.ready()
-    </script>
-
-    <div id="chartdiv2"></div>
-
-    <script>pridobiObcutke()</script>
-
-    <!-- Styles -->
-    <!-- Styles -->
-    <style>
-        #chartdiv {
-            width: 100%;
-            height: 500px;
-        }
-    </style>
-
-    <!-- Resources -->
-    <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
-    <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
-    <script src="https://cdn.amcharts.com/lib/4/themes/dark.js"></script>
-    <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
-
-    <!-- Chart code -->
-    <script>
-        am4core.ready(function() {
-
-// Themes begin
-            am4core.useTheme(am4themes_dark);
-            am4core.useTheme(am4themes_animated);
-// Themes end
-
-            var chart = am4core.create("chartdiv", am4charts.XYChart);
-            chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
-            chart.data = [
-                {
-                    country: "Fantastic",
-                    visits: 20
-                },
-                {
-                    country: "OK",
-                    visits: 31
-                },
-                {
-                    country: "Frustrated",
-                    visits: 5
-                }];
-
-            var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
-            categoryAxis.renderer.grid.template.location = 0;
-            categoryAxis.dataFields.category = "country";
-            categoryAxis.renderer.minGridDistance = 40;
-            categoryAxis.fontSize = 19;
-            categoryAxis.renderer.labels.template.dy = 5;
-
-
-
-            var image = new am4core.Image();
-            image.horizontalCenter = "middle";
-            image.width = 60;
-            image.height = 60;
-            image.verticalCenter = "middle";
-            image.adapter.add("href", (href, target)=>{
-                let category = target.dataItem.category;
-                if(category){
-                    return "/images/" + category.split(" ").join("-").toLowerCase() + ".png";
-                }
-                return href;
-            })
-            categoryAxis.dataItems.template.bullet = image;
-
-
-
-            var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-            valueAxis.min = 0;
-            valueAxis.renderer.minGridDistance = 30;
-            valueAxis.renderer.baseGrid.disabled = true;
-
-
-            var series = chart.series.push(new am4charts.ColumnSeries());
-            series.dataFields.categoryX = "country";
-            series.dataFields.valueY = "visits";
-            series.columns.template.tooltipText = "{valueY.value}";
-            series.columns.template.tooltipY = 0;
-            series.columns.template.strokeOpacity = 0;
-
-// as by default columns of the same series are of the same color, we add adapter which takes colors from chart.colors color set
-            series.columns.template.adapter.add("fill", function(fill, target) {
-                return chart.colors.getIndex(target.dataItem.index);
-            });
-
-        }); // end am4core.ready()
-    </script>
-
+    <div class="chart-holder">
+        <div class="charts charts-active" id="chartdiv2"></div>
+        <div class="charts" id="chartdiv3"></div>
+        <div class="charts" id="chartdiv4"></div>
+        <div class="charts" id="chartdiv5"></div>
+    </div>
     <!-- HTML -->
     <div class="alert-box-header mt-3">Mood</div>
     <div id="chartdiv"></div>
@@ -216,10 +74,20 @@
 
 </div>
 
+<!-- Resources -->
+<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/themes/dark.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="/javascripts/bootstrap.js"></script>
 <script src="/javascripts/bootstrap.bundle.js"></script>
+<script src="/javascripts/lineChartTemperature.js" type="text/javascript"></script>
+<script src="/javascripts/lineChartHumidity.js" type="text/javascript"></script>
+<script src="/javascripts/lineChartBrightness.js" type="text/javascript"></script>
+<script src="/javascripts/lineChartNoise.js" type="text/javascript"></script>
+<script src="/javascripts/chartSwitcher.js" type="text/javascript"></script>
+<!-- <script src="/javascripts/histogram.js" type="text/javascript"></script> -->
 
 </body>
 </html>
