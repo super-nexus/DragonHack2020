@@ -8,8 +8,5 @@ router.get('/login', (req, res) => {
 
 router.get('/index', indexCtrl.index);
 
-router.get("/office", (req, res) => {
-    res.render("office", {});
-})
-
+router.get("/office", indexCtrl.office);
 module.exports = router;

@@ -16,6 +16,12 @@ var postData = (req, res) => {
     });
 };
 
+var deleteAll = (req, res) => {
+    SensorData.remove({}, (err, doc) => {
+        if(!err){ res.send("OK")}
+    });
+};
+
 var getData = (req, res) => {
     SensorData.find({}, (err, docs) => {
         res.send(docs);
@@ -23,9 +29,7 @@ var getData = (req, res) => {
 };
 
 var getDataByDate = (req, res) => {
-    var date = new Date(req.body.date);
-    date = date.toISOString().slice(0, 10);
-
+    let date = req.body.date;
     SensorData.find({
         'time.date': date
     },null, {sort: {
@@ -52,24 +56,26 @@ var getCurrentData = (req, res) => {
 let getDataFromDate = (req, res) => {
     let sentDate = req.body.date;
 
-    let from = new Date(sentDate);
+    let fromm = new Date(sentDate);
     let to = new Date();
 
     SensorData.find({'time.date':{
-            "$gte": from,
+            "$gte": fromm,
             "$lte": to
         }}, (err, docs) => {
         if(!err){
-            console.log(docs)
+            res.send(docs);
         }
     })
 
-}
+};
 
 
 module.exports = {
     postData,
     getData,
     getDataByDate,
-    getCurrentData
+    getDataFromDate,
+    getCurrentData,
+    deleteAll
 };
