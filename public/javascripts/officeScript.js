@@ -59,10 +59,21 @@ function pridobiPodatkeNoise(callback){
 }
 
 function pridobiObcutke(){
-    let res = $.ajax({type: "POST", url: '/data/getAll', async: false})
+    let res = $.ajax({type: "POST", url: '/feeling/getTodaysFeelings', async: false})
     let data;
     if(res.responseJSON){
         data = res.responseJSON;
-        console.log(data)
+        dict = {"Frustrated":0, "Ok":0, "Fantastic":0}
+        for (var key in data) {
+            dict[data[key]["feeling"]] += 1
+        }
+        out = []
+        for (var key in dict) {
+            out.push({"feeling":key, "times":dict[key]})
+        }
+        return out;
     }
+    return null;
 }
+
+pridobiObcutke()
