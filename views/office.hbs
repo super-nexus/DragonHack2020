@@ -74,7 +74,6 @@
             var chart2 = am4core.create("chartdiv2", am4charts.XYChart);
 
 // Add data
-            console.log(" Podatki: ", JSON.stringify(pridobiPodatke()))
             chart2.data = pridobiPodatke();
 
 // Set input format for the dates
@@ -120,17 +119,9 @@
         }); // end am4core.ready()
     </script>
 
-    <div class="slider">
-        <div class="slide" id="slide-1">
-            <div id="chartdiv2"></div>
-        </div>
-        <div class="slide" id="slide-2">
-            <div id="chartdiv2"></div>
-        </div>
-        <div class="slide" id="slide-3"></div>
-        <div class="slide" id="slide-4"></div>
-        <div class="slide" id="slide-5"></div>
-    </div>
+    <div id="chartdiv2"></div>
+
+    <script>pridobiObcutke()</script>
 
     <!-- Styles -->
     <!-- Styles -->

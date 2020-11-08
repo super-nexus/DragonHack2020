@@ -12,3 +12,11 @@ function pridobiPodatke(callback){
     console.log(res);
     return " Hahaha"
 }
+
+function pridobiObcutke(){
+    let res = $.ajax({type: "POST", url: '/feeling/getAll', async: false});
+    if(res.responseJSON){
+        let data = res.responseJSON;
+        console.log(data);
+    }
+}
